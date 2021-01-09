@@ -1,0 +1,462 @@
+Amie Roten
+CS562: Homework 1 Writeup
+
+Part 1:
+
+1. Please see deserialize.py
+2.
+    Amies-MacBook-Pro:Homework_1 amie$ python3 deserialize.py data/*.xml.gz > deserialized.txt
+    Mainland Chinese Foreign Minister Qian Qichen
+    was highly skeptical of Tokyo's explanations of the content of the
+    newly published US-Japan guidelines for defense cooperation when he
+    met Monday in Beijing with representatives of Japan's press.
+    Qian also said the time is not ripe yet for a trilateral official
+    dialogue among Washington, Beijing and Tokyo on defense, adding that
+    "scholarly discussion" would be appropriate at the present.
+    Qian's remarks indicate that despite explanations of the new
+    guidelines by Japanese Prime Minister Ryutaro Hashimoto and Foreign
+    Minister Keizo Obuchi, Beijing is still very worried about whether
+    Taiwan falls within the sphere of the bilateral defense agreement.
+    According to reports in the Japanese media, among Qian's concerns
+    are:
+    -- If the defense pact is a matter between Washington and Tokyo,
+    it should be unnecessary to renew it, hence putting its content into
+    doubt.
+    -- Although the new guidelines do not specifically mention
+    geographic criteria, there is still speculation that they cover
+    Taiwan.
+    -- Some have argued for raising the transparency of the bilateral
+    agreement, while others advocate keeping it ambiguous and opaque.
+    The American Chamber of Commerce (AmCham) in
+    Taipei on Wednesday appealed for an early conclusion of trade
+    consultations between the United States and the Republic of China on
+    terms for Taiwan to join the World Trade Organization (WTO).
+    AmCham President Jeffrey R. Williams told a news conference that
+    all AmCham members hope bilateral ROC-US WTO talks will be concluded
+    as soon as possible to facilitate Taiwan's entry to the Geneva-based
+    world trade regulatory body.
+    According to Williams, most American business people with
+    interests in Taiwan are convinced that they will benefit from
+    Taiwan's WTO accession because Taiwan would be required to further
+    open its market and better protect intellectual property rights.
+    Williams, who just returned from a "doorknocking" visit to
+    Washington, D.C. at the head of a 12-member AmCham delegation, said
+    the US executive branch agreed with AmCham that Taiwan's WTO
+    accession should not be linked to mainland China's membership
+    application.
+    "We agree that Taiwan's WTO entry should be considered completely
+    on the basis of its own economic conditions," Williams said, adding
+    that Taiwan is likely to conclude WTO-related trade consultations
+    with the United States before the end of bilateral WTO talks between
+    Washington and Beijing.
+    During its stay in the United States, the AmCham delegation met
+    with many Clinton administration officials and Congress members to
+    exchange views on ways to help American corporations upgrade their
+    overseas competitiveness.
+    Williams said the AmCham mission had urged various US federal
+    agencies to allow their senior officials to make frequent visits to
+    Taiwan to help boost bilateral trade and economic cooperation for
+    mutual benefits.
+    Even though the Clinton administration was busy preparing for
+    mainland Chinese President Jiang Zemin's planned visit to the United
+    States late this month, Williams said, many federal government
+    officials still showed keen interest in listening to AmCham's
+    suggestions and opinions about reinforcing Taipei-Washington trade
+    and economic ties.
+    As to the AmCham 1997-98 Taiwan White Paper, which he formally
+    unveiled at a news conference held in Washington, D.C. last Thursday,
+    Williams said the annual report mainly analyzed Taiwan's current
+    economic and investment climate as a reference for American companies
+    intending to invest in Taiwan, adding that the White Paper was not
+    aimed at criticizing any party.
+    The White Paper said Taiwan's restrictions on trade and
+    investment across the Taiwan Strait have not only hindered the
+    development of its own industries but have also discouraged
+    multinational business groups from setting up a foothold on the
+    island. It further claimed that the ROC government's master plan to
+    develop Taiwan into an Asia-Pacific operations center would remain a
+    pipe dream if Taiwan companies are not allowed to enter the vast
+    mainland market directly and obtain access to its resources.
+    Williams said AmCham's analysis was made purely from a commercial
+    viewpoint, adding that AmCham members believe Taiwan must establish
+    direct communications and transport links with mainland China so that
+    Taiwan-based companies can make successful inroads into the world's
+    largest market.
+    Evergreen's green-colored ships and green
+    matchbox-like containers are the hope of the port of Gioia Tauro in
+    southern Italy.
+    Taiwan-based Evergreen Marine Corp., which operates one of the
+    largest container fleets in the world, is wagering on Gioia Tauro, a
+    newly-developed and non-urban port area, attempting to build it into
+    the third largest container port in the world.
+    Evergreen is also targeting Gioia Tauro as a gateway to all
+    Mediterranean-rim states and the Black Sea to the north, said a
+    company spokesman.
+    The Italian government has put up nearly US$180 million since
+    1975 to develop the quiet backwater fishing port into a commercial
+    harbor. With most parts of the development already finished, the
+    harbor accommodated some 1,270 ships in the first six months of this
+    year. The harbor bureau there estimated that its transshipment
+    capacity may reach 1.4 million TEUs this year.
+    Although the port is fully operational, its peripheral facilities
+    are still in dire need of help, Aldo Alessio, mayor of Gioia Tauro,
+    lamented. He noted that many support works have been left unfinished
+    due to budget constraints, with highways in the vicinity only four
+    meters wide and the nearby hinterland remaining undeveloped and
+    blanketed by weeds.
+    Taipei's representative office in Rome, which has generally been
+    reluctant to beckon Taiwan investors to Italy for fear that the
+    ... (above are the first 100 lines, out of a total 1702365 lines)
+
+3. My approach was pretty simple, I just used argv to accept a list of
+   one or more filenames, iterated through the filenames, using gzip.open()
+   to unzip each file. The resulting file objects were then passed to
+   etree.parse() to convert into ElementTree objects in order to be parsed
+   as xml. Per the suggestion in the assignment outline, I used xpath() to
+   create lists of each element corresponding to a particular tag, starting
+   with a list of all <DOC> elements. I opted to drill down to this layer
+   first in order to only drill further into <DOC>s with the type tag "story".
+   I then grabbed all <P> elements using another xpath(), this time drilling
+   down two layers. Finally, once a list of all <P> elements in that <DOC/TEXT>
+   element was gathered, I iterated through and printed the text contents of
+   each to stdout.
+
+   I didn't necessarily encounter any bugs (that I'm aware of), but it did
+   take some time to understand how to use xpath() with multiple tags. I
+   wonder also if there is a more efficient way of doing this, as although
+   it is not necessarily *slow* for this dataset, having three nested loops
+   could make it quite slow as the input gets larger.
+
+Part 2:
+1. Using nltk's sent_tokenizer, I found that this corpus has 579776 sentences!
+
+Part 3 (Word Counting and Distribution):
+1. In this corpus, there are 143410 types (# of distinct words).
+2. There are 16678731 unigram tokens (total number of running words).
+3. Please see rank-freq.png . This looks pretty similar to the one
+   on the wikipedia page, which is what I would expect!
+4. The thirty most common words are:
+   ['THE', 'TO', 'OF', 'AND', 'IN', 'A', 'THAT', 'TAIWAN', "'S",
+    'SAID', 'FOR', 'ON', 'WILL', 'WITH', 'IS', 'AT', 'AS', 'BY',
+    'HE', 'BE', 'FROM', 'HAS', 'CHINA', 'WAS', 'AN', 'PERCENT',
+    'ITS', 'HAVE', 'IT', 'NOT']
+
+    It is interesting, the presence of "'s" in this set of words,
+    as I don't think of this possessive suffix as independent from
+    the word it is appended to. Certainly it carries meaning, but
+    I'm not sure how much meaning it carries separate from the entity
+    it was originally attached to. One way of getting around this
+    problem could be to simply exclude this token when compiling
+    ngrams, but as alluded to, this may be information that we would
+    like to keep, but in the original context. So, as a preprocessing
+    step, after word tokenizing, we could identify any of these tokens
+    and append it to the previous word. However, this feels a little
+    sketchy, since in the UPenn treebank it is considered its own
+    type/tag ("POS" --> genitive marker, as nltk.help.upenn_tagset('POS')
+    informs me). It may be worth noting that in part 2, I did notice
+    that there were tokens that were not removed when excluding
+    punctuation using just the set in string.punctuation, which likely
+    would have shown up in the top 30 here. I just ended up including
+    them in the list of tokens to remove, so they do not show up
+    here. But, for the possessive suffix, I'd say that the best route
+    to take would depend on the task.
+
+5. Please see analysis.py
+6. Unsurprisingly, after removing the stopwords, the number of
+   types stayed roughly the same (143270), but the number of
+   tokens decreased rather significantly (10100995). This makes
+   sense as the number of unique words removed is small, but those
+   words make up a great deal of the tokens in the original corpus.
+   The top 30 words now are:
+   ['TAIWAN', 'SAID', 'CHINA', 'PERCENT', 'GOVERNMENT', 'ALSO',
+    'CHEN', 'PRESIDENT', 'YEAR', 'TAIPEI', 'NT', 'TWO', 'MAINLAND',
+    'PEOPLE', 'US', 'NEW', 'CHINESE', 'ACCORDING', 'PARTY',
+    'ECONOMIC', 'BILLION', 'FIRST', 'NATIONAL', 'ONE', 'FOREIGN',
+    'WOULD', 'INTERNATIONAL', 'OFFICIALS', 'CITY', 'LOCAL']
+   The list of stopwords provided by nltk, in my opinion, takes
+   pretty broad strokes. For the most part, this list makes sense,
+   in that all of the words are what I consider pretty common, and
+   don't necessarily contain *much* meaningful content independant
+   from context, although that feels like a risky statement. As
+   far as surprising words, I'm not familiar with the token 'ma',
+   and interestingly, when I tried to get more info using the
+   pos_tag function, it reported back [('m', 'NN'), ('a', 'DT')],
+   which was not terribly helpful. I did end up adding the possessive
+   suffix discussed in question 4, as this seems to fall into a
+   similar category of the words in this list.
+
+   Speaking to my "risky statement", I suppose if we were,
+   say, trying to identify the topic of a particular article,
+   then these words are likely fine to exclude, but many of them
+   do seem like they would carry important information in context.
+   For example, for a task like sentiment analysis (at least as
+   I currently understand it), I would think that words that
+   convey negative or positive connotations would be pretty
+   important, like "couldn't", "isn't", "wasn't", especially
+   in larger contexts, e.g. "wasn't good" has a very different
+   meaning if the "wasn't" was dropped. However, in a project
+   I worked on where we were trying to train a model on
+   single-word utterances derived from a spoken corpus, we
+   decided to drop stopwords since they would have been over-
+   represented. So, I think it really just depends on what type
+   of problem you're working on, and what corpus is being used.
+
+Part 3 (Word Association Metrics):
+Bulletpoint 1: After calculating PMI for all bigrams, the top
+   30 are:
+   Bigram: ('TREETOPS', 'SHEARED') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           TREETOPS  unigram frequency: 1 ,
+           SHEARED  unigram frequency: 1
+   Bigram: ('HANNES', 'FARLEITER') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           HANNES  unigram frequency: 1 ,
+           FARLEITER  unigram frequency: 1
+   Bigram: ('FREIE', 'DEMOKRATISCHE') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           FREIE  unigram frequency: 1 ,
+           DEMOKRATISCHE  unigram frequency: 1
+   Bigram: ('CEP006', '10-03-97') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           CEP006  unigram frequency: 1 ,
+           10-03-97  unigram frequency: 1
+   Bigram: ('NICOSIA', 'GORGIE') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           NICOSIA  unigram frequency: 1 ,
+           GORGIE  unigram frequency: 1
+   Bigram: ('GORGIE', 'MURADOV') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           GORGIE  unigram frequency: 1 ,
+           MURADOV  unigram frequency: 1
+   Bigram: ('CAUSUS', 'BELLI') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           CAUSUS  unigram frequency: 1 ,
+           BELLI  unigram frequency: 1
+   Bigram: ('OBLITERATION', 'PRINCELINGS') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           OBLITERATION  unigram frequency: 1 ,
+           PRINCELINGS  unigram frequency: 1
+   Bigram: ('HARDCOVER', 'GILT-EDGED') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           HARDCOVER  unigram frequency: 1 ,
+           GILT-EDGED  unigram frequency: 1
+   Bigram: ('FAYEZ', 'ZAWARNEH') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           FAYEZ  unigram frequency: 1 ,
+           ZAWARNEH  unigram frequency: 1
+   Bigram: ('9,197', '10,378') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           9,197  unigram frequency: 1 ,
+           10,378  unigram frequency: 1
+   Bigram: ('CEP002', '10-07-97') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           CEP002  unigram frequency: 1 ,
+           10-07-97  unigram frequency: 1
+   Bigram: ('NN1', 'NN2') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           NN1  unigram frequency: 1 ,
+           NN2  unigram frequency: 1
+   Bigram: ('NN2', 'NN3') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           NN2  unigram frequency: 1 ,
+           NN3  unigram frequency: 1
+   Bigram: ('TULAGA', 'MANUELLA') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           TULAGA  unigram frequency: 1 ,
+           MANUELLA  unigram frequency: 1
+   Bigram: ('LUCILLE', 'ROYBAL-ALLARD') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           LUCILLE  unigram frequency: 1 ,
+           ROYBAL-ALLARD  unigram frequency: 1
+   Bigram: ('HALLDOR', 'ASGRIMSSON') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           HALLDOR  unigram frequency: 1 ,
+           ASGRIMSSON  unigram frequency: 1
+   Bigram: ('WAHYO', 'DJATMIKO') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           WAHYO  unigram frequency: 1 ,
+           DJATMIKO  unigram frequency: 1
+   Bigram: ('FLAVONOID', 'SPONIN') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           FLAVONOID  unigram frequency: 1 ,
+           SPONIN  unigram frequency: 1
+   Bigram: ('SPONIN', 'TANIN') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           SPONIN  unigram frequency: 1 ,
+           TANIN  unigram frequency: 1
+   Bigram: ('UZI', '.90-CALIBER') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           UZI  unigram frequency: 1 ,
+           .90-CALIBER  unigram frequency: 1
+   Bigram: ('ZCCZ', 'CEP007') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           ZCCZ  unigram frequency: 1 ,
+           CEP007  unigram frequency: 1
+   Bigram: ('CEP007', '10-10-97') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           CEP007  unigram frequency: 1 ,
+           10-10-97  unigram frequency: 1
+   Bigram: ('FRIEDRICH', 'NAUMANN') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           FRIEDRICH  unigram frequency: 1 ,
+           NAUMANN  unigram frequency: 1
+   Bigram: ('ANDRIS', 'AMERIKS') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           ANDRIS  unigram frequency: 1 ,
+           AMERIKS  unigram frequency: 1
+   Bigram: ('PERSONIFICATION', 'GERMANIC') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           PERSONIFICATION  unigram frequency: 1 ,
+           GERMANIC  unigram frequency: 1
+   Bigram: ('GERMANIC', 'MANHOOD') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           GERMANIC  unigram frequency: 1 ,
+           MANHOOD  unigram frequency: 1
+   Bigram: ('HIMMLER', 'NUTTY') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           HIMMLER  unigram frequency: 1 ,
+           NUTTY  unigram frequency: 1
+   Bigram: ('ZAIMAN', 'NURMATIAS') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           ZAIMAN  unigram frequency: 1 ,
+           NURMATIAS  unigram frequency: 1
+   Bigram: ('ESTRADE', 'OYUELA') ,
+           PMI: 102030099990025.02 ,
+           bigram frequency: 1 ,
+           ESTRADE  unigram frequency: 1 ,
+           OYUELA  unigram frequency: 1
+
+   The highest PMI pairs are not what I would have expected, but when
+   inspecting the frequencies, it makes sense that these pairs would
+   have high PMI, as they only occur once, thus 100% of the time they
+   occur together.
+
+Bulletpoint 2:
+   I experimented with a threshold of 10, 50, 100, 250, and 500.
+   With a threshold of 10, the results were rather similar to those
+   with no threshold, although there were some instances where the
+   word pairs, although having high PMI do have at least one word
+   that does occur in other contexts (e.g., ('MUCOUS', 'MEMBRANES')).
+   The top pairs were all still pretty uncommon in the overall set
+   of bigrams. With a threshold of 50, we start to see more common
+   bigram pairs with a higher frequency than the minimum dictated
+   by the threshold. At this threshold, a fair few of the pairs
+   correspond to proper names of cities, people, and companies, as
+   opposed to the more esoteric pairs seen with the lower thresholds.
+   This pattern holds for the threshold of 100 as well, but the
+   individual unigram frequencies diverge a bit more, as the bigrams
+   become more frequent (e.g., ('SYMPHONY', 'ORCHESTRA') has a
+   bigram frequency of 103, and a high PMI, but the individual
+   unigram components have frequencies of 143 and 180 respectively.
+   It seems that as the bigrams become more frequent, there is a
+   trend that the unigram components also more commonly occur in other
+   contexts. Most of these patterns continue as the threshold is
+   increased further, however at a threshold of 500, the bigram pairs
+   correspond less to proper names of people (although some cities
+   are present), and more to common phrases such as "metric tons",
+   "last-minute changes" and "real estate". This makes sense, as
+   these phrases can occur in many larger contexts, whereas the names
+   of certain people likely only occur in articles...well, about those
+   people!
+
+
+Bulletpoint 3:
+   With a threshold of 100, the top 10 highest-PMI word pairs are:
+   Bigram: ('SPONGIFORM', 'ENCEPHALOPATHY') ,
+           PMI: 8994976137.14058 ,
+           bigram frequency: 105 ,
+           SPONGIFORM  unigram frequency: 106 ,
+           ENCEPHALOPATHY  unigram frequency: 106
+   Bigram: ('YING-', 'JEOU') ,
+           PMI: 6028133782.352488 ,
+           bigram frequency: 121 ,
+           YING-  unigram frequency: 126 ,
+           JEOU  unigram frequency: 129
+   Bigram: ('BOVINE', 'SPONGIFORM') ,
+           PMI: 5689994011.173362 ,
+           bigram frequency: 103 ,
+           BOVINE  unigram frequency: 132 ,
+           SPONGIFORM  unigram frequency: 106
+   Bigram: ('ALMA', 'MATER') ,
+           PMI: 5419555484.202748 ,
+           bigram frequency: 112 ,
+           ALMA  unigram frequency: 136 ,
+           MATER  unigram frequency: 114
+   Bigram: ('SRI', 'LANKA') ,
+           PMI: 4650646155.404224 ,
+           bigram frequency: 131 ,
+           SRI  unigram frequency: 147 ,
+           LANKA  unigram frequency: 133
+   Bigram: ('BARACK', 'OBAMA') ,
+           PMI: 3709990157.731134 ,
+           bigram frequency: 105 ,
+           BARACK  unigram frequency: 106 ,
+           OBAMA  unigram frequency: 257
+   Bigram: ('TOME', 'PRINCIPE') ,
+           PMI: 2613289219.1875596 ,
+           bigram frequency: 166 ,
+           TOME  unigram frequency: 197 ,
+           PRINCIPE  unigram frequency: 167
+   Bigram: ('KUALA', 'LUMPUR') ,
+           PMI: 2392484886.8890777 ,
+           bigram frequency: 202 ,
+           KUALA  unigram frequency: 206 ,
+           LUMPUR  unigram frequency: 203
+   Bigram: ('SAO', 'TOME') ,
+           PMI: 2166447721.3069553 ,
+           bigram frequency: 188 ,
+           SAO  unigram frequency: 212 ,
+           TOME  unigram frequency: 197
+   Bigram: ('AU', 'OPTRONICS') ,
+           PMI: 1994395066.9795551 ,
+           bigram frequency: 162 ,
+           AU  unigram frequency: 217 ,
+           OPTRONICS  unigram frequency: 176
+
+   These are a bit more what I would expect -- word pairs
+   that are somewhat common which understandably rarely
+   occur in a different context. I guess these articles
+   were from that period where mad cow disease was a hot
+   topic.
+
+Bulletpoint 4:
+   The PMI for ("NEW", "YORK") is ~103346, which is pretty low
+   compared to the top PMI's above. The bigram frequency is
+   somewhat high, at 1928, and while the YORK unigram frequency
+   is similar, at 1949, implying that YORK is typically seen
+   in this bigram context, NEW is significantly more common,
+   with a unigram frequency of 31251. So, the high probability
+   of NEW will increase the denominator of the PMI calculation,
+   bringing down the PMI value. Intuitively, although this
+   is a common pair, and YORK may often be preceeded by NEW,
+   we can't say the same for NEW (not nearly as predictably
+   collocated with YORK).
